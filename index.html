@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Law Office of Mike Ritter | Los Santos</title>
+    
+    <!-- Import czcionek Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- ZMIENNE I RESET --- */
+        :root {
+            --bg-dark: #0b0f17;       
+            --bg-card: #121824;       
+            --primary: #c5a880;       
+            --primary-hover: #e0c39d; 
+            --text-light: #f8fafc;    
+            --text-muted: #94a3b8;    
+            --border: rgba(197, 168, 128, 0.2);
+            --success: #10b981;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* --- NAWIGACJA --- */
+        nav {
+            background-color: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .nav-logo-img {
+            height: 40px;
+            width: 40px;
+            object-fit: contain;
+        }
+
+        .nav-logo {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #fff;
+            letter-spacing: 2px;
+        }
+
+        .nav-logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: 80px 20px;
+            text-align: center;
+            background: linear-gradient(rgba(11, 15, 23, 0.85), rgba(11, 15, 23, 0.98));
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero-logo {
+            max-width: 220px;
+            margin-bottom: 25px;
+            filter: drop-shadow(0 0 15px rgba(197, 168, 128, 0.2));
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.8rem;
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .hero p {
+            font-family: 'Cinzel', serif;
+            color: var(--primary);
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+        }
+
+        /* --- TREŚĆ --- */
+        .container {
+            max-width: 1100px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        @media (min-width: 768px) {
+            .intro-grid {
+                grid-template-columns: 1.5fr 1fr;
+            }
+        }
+
+        .intro-text h2 {
+            font-family: 'Cinzel', serif;
+            color: #fff;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .intro-text p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        .quote-card {
+            background-color: var(--bg-card);
+            border-left: 4px solid var(--primary);
+            padding: 30px;
+            border-radius: 0 8px 8px 0;
+            text-align: center;
+        }
+
+        .quote-card p {
+            font-style: italic;
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        /* --- USŁUGI KAFELKI --- */
+        .section-title {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            margin-top: 60px;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        @media (min-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .full-width {
+                grid-column: span 2;
+            }
+        }
+
+        .service-card {
+            background-color: var(--bg-card);
+            padding: 35px;
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.02);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+        }
+
+        .service-card h3 {
+            font-family: 'Cinzel', serif;
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .service-card h3 span {
+            color: var(--primary);
+            font-size: 0.8rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* --- BANER CENNIKA PRZEKIEROWUJĄCY DO PODSTRONY --- */
+        .pricing-banner {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 50px 30px;
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .pricing-banner h2 {
+            font-family: 'Cinzel', serif;
+            color: #fff;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .pricing-banner p {
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 30px auto;
+            font-size: 1.05rem;
+        }
+
+        /* --- SEKTA FORMULARZA I KONTAKTU --- */
+        .contact-box {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        @media (min-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr 1.2fr;
+            }
+        }
+
+        .contact-info h3, .form-box h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--primary);
+            margin-bottom: 25px;
+            font-size: 1.4rem;
+        }
+
+        .info-item {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 12px;
+        }
+
+        .info-item strong {
+            color: #fff;
+            display: block;
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        /* STYL FORMULARZA */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+
+        .form-control {
+            width: 100%;
+            background-color: #0b0f17;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 12px;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        select.form-control {
+            cursor: pointer;
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Komunikat o sukcesie */
+        .status-message {
+            display: none;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            font-weight: 500;
+            text-align: center;
+        }
+        .status-success {
+            background-color: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--success);
+            color: var(--success);
+        }
+
+        /* PRIVILEGE / KLAUZULA DROBNYM DRUKIEM */
+        .privilege-notice {
+            margin-top: 20px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-align: justify;
+            border-top: 1px dashed rgba(197, 168, 128, 0.15);
+            padding-top: 15px;
+            line-height: 1.4;
+        }
+
+        /* PRZYCISKI */
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--bg-dark);
+            text-decoration: none;
+            padding: 14px 35px;
+            font-weight: 600;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn:disabled {
+            background-color: #475569;
+            color: #1e293b;
+            cursor: not-allowed;
+        }
+
+        /* --- STOPKA --- */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: #070a10;
+            border-top: 1px solid rgba(255,255,255,0.02);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAWIGACJA -->
+    <nav>
+        <a href="#" class="nav-logo-container">
+            <img src="Black and Gold Modern Illustrative Law Firm Logo.png" alt="Logo" class="nav-logo-img">
+            <span class="nav-logo">RITTER<span>.</span></span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#services">Zakres Usług</a></li>
+            <li><a href="cennik.html">Oficjalny Cennik</a></li>
+            <li><a href="#contact">Kontakt & Zgłoszenia</a></li>
+        </ul>
+    </nav>
+
+    <!-- NAGŁÓWEK HERO Z LOGO -->
+    <header class="hero">
+        <img src="Black and Gold Modern Illustrative Law Firm Logo.png" alt="Mike Ritter Law Office Logo" class="hero-logo">
+        <h1>LAW OFFICE OF MIKE RITTER</h1>
+        <p>Criminal Defense & Corporate Counsel in Los Santos</p>
+        <a href="#contact" class="btn" style="width: auto;">Zgłoś Sprawę Online</a>
+    </header>
+
+    <!-- GŁÓWNA TREŚĆ -->
+    <div class="container">
+        
+        <!-- O NAS -->
+        <section class="intro-grid">
+            <div class="intro-text">
+                <h2>Kompleksowa Pomoc Prawna w San Andreas</h2>
+                <p>Jako licencjonowany adwokat, radca prawny oraz notariusz, zapewniam pełne bezpieczeństwo prawne zarówno osobom prywatnym, jak i podmiotom gospodarczym na terenie całego stanu.</p>
+                <p>Niezależnie od tego, czy potrzebujesz natychmiastowej obrony karnej po zatrzymaniu przez służby, profesjonalnego audytu i stałego wsparcia w prowadzeniu biznesu, czy też sporządzenia oficjalnych dokumentów o mocy notarialnej – moje biuro gwarantuje skuteczność, pełną poufność i najwyższy standard obsługi.</p>
+            </div>
+            <div class="quote-card">
+                <p>„Twoje prawa, Twój biznes, Twoje bezpieczeństwo. W jednej Kancelarii.”</p>
+                <small style="color: var(--primary);">– Mike Ritter, Attorney-at-Law & Notary Public</small>
+            </div>
+        </section>
+
+        <!-- KAFELKI Z USŁUGAMI -->
+        <section id="services">
+            <h2 class="section-title">Zakres Usług</h2>
+            <!-- KAFELKI Z USŁUGAMI -->
+        <section id="services">
+            <h2 class="section-title">Zakres Usług Kancelarii</h2>
+            <div class="services-grid">
+                
+                <!-- KAFELEK 1: ADWOKAT -->
+                <div class="service-card">
+                    <h3>1. Sprawy Karne & Procesowe <span>ADWOKAT</span></h3>
+                    <p>Natychmiastowa asysta i reprezentacja przy zatrzymaniach przez organy ścigania. Kompleksowa obrona oskarżonych przed Sądem Najwyższym w sprawach o przestępstwa lekkie, średnie oraz ciężkie. Przygotowywanie profesjonalnych wniosków o kaucję, apelacji oraz reprezentacja w sprawach o przedterminowe zwolnienie.</p>
+                </div>
+
+                <!-- KAFELEK 2: RADCA PRAWNY -->
+                <div class="service-card">
+                    <h3>2. Prowadzenie Działalności <span>RADCA PRAWNY</span></h3>
+                    <p>Kompleksowe wsparcie dla biznesu w Los Santos. Pomoc w procesie legalnej rejestracji przedsiębiorstw w strukturach Departamentu Sprawiedliwości (DOJ). Konstruowanie umów spółek, regulaminów wewnętrznych oraz kontraktów menedżerskich. Oferujemy stałą, tygodniową obsługę prawną firm (abonament), zabezpieczającą transakcje i negocjacje.</p>
+                </div>
+
+                <!-- KAFELEK 3: NOTARIAT I SPRAWY CYWILNE -->
+                <div class="service-card full-width">
+                    <h3>3. Sprawy Cywilne & Usługi Notarialne <span>NOTARIUSZ PUBLICZNY</span></h3>
+                    <p>Oficjalne zabezpieczenie Twojego majątku i interesów osobistych. Sporządzanie dokumentów o najwyższej mocy prawnej: testamentów, pełnomocnictw ogólnych i szczególnych, intercyz przedmałżeńskich oraz umów cywilnoprawnych (kupno/sprzedaż majątku, najem). Prowadzimy również pełną obsługę procesów cywilnych, w tym przygotowywanie i składanie pozwów, reprezentację procesową oraz formalności związane z wnioskami o adopcję.</p>
+                </div>
+
+            </div>
+        </section>
+            </div>
+        </section>
+
+        <!-- NOWA SEKCJA BANERU ZAMIAST STARYCH TABEL -->
+        <section id="pricing" class="pricing-banner">
+            <h2>Przejrzyste Warunki Współpracy</h2>
+            <p>
+                Działamy w oparciu o jasny system stawek. Koszty obrony karnej, obsługi radcowskiej przedsiębiorstw oraz czynności notarialnych sprawdzisz w naszym oficjalnym taryfikatorze.
+            </p>
+            <a href="cennik.html" class="btn" style="width: auto; padding: 14px 45px;">Zobacz Pełny Cennik Usług</a>
+        </section>
+
+        <!-- SEKCJA KONTAKTOWA I FORMULARZ -->
+        <section id="contact" class="contact-box">
+            <div class="contact-grid">
+                
+                <!-- DANE TELEADRESOWE -->
+                <div class="contact-info">
+                    <h3>Biuro Kancelarii</h3>
+                    <div class="info-item">
+                        <strong>Lokalizacja:</strong>
+                        Richman Street, Los Santos, San Andreas
+                    </div>
+                    <div class="info-item">
+                        <strong>Telefon:</strong>
+                        #555-RITTER
+                    </div>
+                    <div class="info-item">
+                        <strong>E-mail:</strong>
+                        Kondzio._.
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 20px;">
+                        Nasz sekretariat przyjmuje zgłoszenia całodobowo. Po poprawnym wysłaniu wniosku, system automatycznie przekaże sprawę do mecenasa Rittera za pomocą wewnętrznego protokołu.
+                    </p>
+                </div>
+
+                <!-- FORMULARZ ZGŁOSZENIOWY -->
+                <div class="form-box">
+                    <h3>Wniosek o Pomoc Prawną</h3>
+                    
+                    <div id="status-msg" class="status-message status-success">Zgłoszenie zostało pomyślnie wysłane do bazy danych!</div>
+                    
+                    <form id="rp-law-form" onsubmit="sendToDiscord(event)">
+                        
+                        <div class="form-group">
+                            <label for="name">Imię i Nazwisko</label>
+                            <input type="text" id="name" class="form-control" placeholder="np. John Doe" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Numer Telefonu</label>
+                            <input type="text" id="phone" class="form-control" placeholder="np. 555-1234" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="discord">E-mail (Discord)</label>
+                            <input type="text" id="discord" class="form-control" placeholder="np. jdoe" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="service">Zakres usług</label>
+                            <select id="service" class="form-control" required>
+    <option value="" disabled selected>-- Wybierz rodzaj sprawy --</option>
+    <option value="Porada Prawna (30 min)">Porada Prawna (Konsultacja 30 min)</option>
+    <option value="Obrona karna / Asysta przy zatrzymaniu">Obrona karna / Asysta przy zatrzymaniu</option>
+    <option value="Wniosek o kaucję / Przedterminowe zwolnienie">Wniosek o kaucję / Przedterminowe zwolnienie</option>
+    <option value="Rejestracja / Stała obsługa biznesu">Rejestracja / Stała obsługa biznesu</option>
+    <option value="Usługi Notarialne (Testament, Pełnomocnictwo, Umowy)">Usługi Notarialne (Testament, Pełnomocnictwo, Umowy)</option>
+    <option value="Sprawy Cywilne (Pozwy, Reprezentacja, Adopcje)">Sprawy Cywilne (Pozwy, Reprezentacja, Adopcje)</option>
+</select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Opis Sprawy</label>
+                            <textarea id="message" class="form-control" placeholder="Opisz szczegółowo sytuację..." required></textarea>
+                        </div>
+
+                        <button type="submit" id="submit-btn" class="btn">Wyślij oficjalne zgłoszenie</button>
+                    </form>
+
+                    <!-- KLAUZULA POUFNOŚCI / IMMERSJA -->
+                    <div class="privilege-notice">
+                        <strong>ATTORNEY-CLIENT PRIVILEGE NOTICE:</strong> Wszystkie informacje przesłane za pośrednictwem tego szyfrowanego formularza są objęte bezwzględną tajemnicą adwokacką na mocy Kodeksu Karnego Stanu San Andreas. Dane nie mogą zostać udostępnione organom ścigania, bez oficjalnego nakazu Sądu Stanowego.
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <!-- STOPKA -->
+    <footer>
+        <p>&copy; 2026 Law Office of Mike Ritter. All Rights Reserved.</p>
+        <p style="font-size: 0.75rem; margin-top: 5px; color: #475569;">Project for Roleplay Purposes only.</p>
+    </footer>
+
+    <!-- SKRYPT INTEGRACJI Z WEBHOOKOEM DISCORDA -->
+    <script>
+        function sendToDiscord(e) {
+            e.preventDefault();
+
+            const webhookUrl = "https://discord.com/api/webhooks/1511341573483270156/_0AMy0_-Ntqhv4XJfLeftceUrRh5moYwK_XTzD05mFsM6q3dTK9N7PWuNnDnNWCCUc-m";
+
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const discord = document.getElementById('discord').value;
+            const service = document.getElementById('service').value;
+            const message = document.getElementById('message').value;
+            
+            const submitBtn = document.getElementById('submit-btn');
+            const statusMsg = document.getElementById('status-msg');
+
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Wysyłanie...";
+
+            const requestData = {
+                username: "Sekretariat Kancelarii",
+                avatar_url: "https://i.imgur.com/gK96eH8.png",
+                embeds: [{
+                    title: `⚖️ NOWE ZGŁOSZENIE: ${service.toUpperCase()}`,
+                    color: 12953728, 
+                    fields: [
+                        { name: "👤 Klient (Imię i Nazwisko)", value: name, inline: true },
+                        { name: "📞 Numer Telefonu", value: phone, inline: true },
+                        { name: "🎮 Discord / Kontakt", value: discord, inline: true },
+                        { name: "📝 Opis Sprawy / Biznesu", value: message, inline: false }
+                    ],
+                    footer: { text: "System Zgłoszeń Kancelarii Mike Ritter • Los Santos" },
+                    timestamp: new Date().toISOString()
+                }]
+            };
+
+            fetch(webhookUrl, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(requestData)
+            })
+            .then(response => {
+                if (response.ok) {
+                    statusMsg.style.display = "block";
+                    document.getElementById('rp-law-form').reset();
+                    submitBtn.innerText = "Wysłano pomyślnie";
+                    
+                    setTimeout(() => {
+                        statusMsg.style.display = "none";
+                        submitBtn.disabled = false;
+                        submitBtn.innerText = "Wyślij oficjalne zgłoszenie";
+                    }, 5000);
+                } else {
+                    alert("Wystąpił problem podczas wysyłania zgłoszenia. Sprawdź Webhook.");
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = "Wyślij oficjalne zgłoszenie";
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("Błąd sieciowy podczas komunikacji z Discordem.");
+                submitBtn.disabled = false;
+                submitBtn.innerText = "Wyślij oficjalne zgłoszenie";
+            });
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cennik Usług | Law Office of Mike Ritter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0b0f17;       
+            --bg-card: #121824;       
+            --primary: #c5a880;       
+            --primary-hover: #e0c39d; 
+            --text-light: #f8fafc;    
+            --text-muted: #94a3b8;    
+            --border: rgba(197, 168, 128, 0.2);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* --- NAWIGACJA --- */
+        nav {
+            background-color: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-logo-container { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .nav-logo-img { height: 40px; width: 40px; object-fit: contain; }
+        .nav-logo { font-family: 'Cinzel', serif; font-weight: 700; font-size: 1.2rem; color: #fff; letter-spacing: 2px; }
+        .nav-logo span { color: var(--primary); }
+        .nav-links { display: flex; list-style: none; gap: 30px; }
+        .nav-links a { color: var(--text-light); text-decoration: none; font-size: 0.9rem; font-weight: 500; letter-spacing: 1px; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--primary); }
+
+        /* --- SEKCJA CENNIKA --- */
+        .container { max-width: 1100px; margin: 50px auto; padding: 0 20px; }
+        
+        .section-title {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 2.3rem;
+            margin-bottom: 50px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        .section-title::after {
+            content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 80px; height: 2px; background-color: var(--primary);
+        }
+
+        .pricing-container { display: grid; grid-template-columns: 1fr; gap: 30px; margin-bottom: 50px; }
+        @media (min-width: 992px) {
+            .pricing-container { grid-template-columns: 1fr 1fr; }
+            .pricing-full { grid-column: span 2; }
+        }
+
+        .pricing-box { background-color: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 6px; padding: 30px; }
+        .pricing-box h3 { font-family: 'Cinzel', serif; color: var(--primary); font-size: 1.3rem; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 10px; letter-spacing: 1px; }
+        
+        .pricing-table { width: 100%; border-collapse: collapse; }
+        .pricing-table tr { border-bottom: 1px solid rgba(255, 255, 255, 0.04); }
+        .pricing-table tr:last-child { border-bottom: none; }
+        .pricing-table td { padding: 15px 10px; vertical-align: top; }
+        
+        .service-info { font-weight: 500; color: #fff; }
+        .service-info small { display: block; color: var(--text-muted); font-weight: 400; margin-top: 4px; font-size: 0.85rem; }
+        .service-cost { text-align: right; font-family: 'Cinzel', serif; color: var(--primary); font-weight: 700; white-space: nowrap; font-size: 1.05rem; }
+
+        .btn {
+            display: inline-block; background-color: var(--primary); color: var(--bg-dark); text-decoration: none; padding: 14px 35px; font-weight: 600; border-radius: 4px; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; transition: background-color 0.3s; border: none; text-align: center;
+        }
+        .btn:hover { background-color: var(--primary-hover); }
+
+        footer { text-align: center; padding: 40px 20px; background-color: #070a10; border-top: 1px solid rgba(255,255,255,0.02); color: var(--text-muted); font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="nav-logo-container">
+            <img src="Black and Gold Modern Illustrative Law Firm Logo.png" alt="Logo" class="nav-logo-img">
+            <span class="nav-logo">RITTER<span>.</span></span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#services">Zakres Usług</a></li>
+            <li><a href="cennik.html" style="color: var(--primary);">Oficjalny Cennik</a></li>
+            <li><a href="index.html#contact">Kontakt & Zgłoszenia</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h2 class="section-title">Cennik Usług Kancelarii</h2>
+        
+        <div class="pricing-container">
+            <!-- 1. PROWADZENIE DZIAŁALNOŚCI -->
+            <div class="pricing-box">
+                <h3>1. Prowadzenie Działalności (Radca)</h3>
+                <table class="pricing-table">
+                    <tr>
+                        <td class="service-info">Pomoc przy rejestracji firmy<small>Pomoc w wypełnieniu dokumentacji oraz nadzór nad procesem rejestracji w DOJ.</small></td>
+                        <td class="service-cost">$40,000</td>
+                    </tr>
+                    <tr>
+                        <td class="service-info">Obsługa prawna firmy (tygodniowa)<small>Stałe wsparcie prawne w bieżącym funkcjonowaniu przedsiębiorstwa.</small></td>
+                        <td class="service-cost">$90,000</td>
+                    </tr>
+                    <tr>
+                        <td class="service-info">Sporządzenie dokumentów firmowych<small>Regulaminy wewnętrzne, umowy z pracownikami i dokumentacja.</small></td>
+                        <td class="service-cost">$70k - $100k</td>
+                    </tr>
+                    <tr>
+                        <td class="service-info">Pomoc przy negocjacjach / transakcjach<small>Zabezpieczenie transakcji i kontraktów zależnie od stopnia ryzyka.</small></td>
+                        <td class="service-cost">$65k - $75k</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- 2. SPRAWY KARNE I PROCESOWE -->
+            <div class="pricing-box">
+                <h3>2. Sprawy Karne & Czynności (Adwokat)</h3>
+                <table class="pricing-table">
+                    <tr>
+                        <td class="service-info">Reprezentacja przy zatrzymaniu<small>Mecenas reprezentuje klienta w trakcie czynności organów ścigania.</small></td>
+                        <td class="service-cost">$12,000</td>
+                    </tr>
+                    <tr>
+                        <td class="service-info">Obrona w sądzie (przestępstwo lekkie)<small>Mecenas broni oskarżonego w trakcie rozprawy o przestępstwo lekkie.</small></td>
+                        <td class="service-cost">$60,000</td>
+                    </tr>
+                    <tr>
+                        <td class="service-info">Obrona w sądzie (przestępstwo średnie)<small>Mecenas broni oskarżonego w trakcie rozprawy o przestępstwo średnie.</small></td>
+                        <td class="service-cost">$75,000</td>
+                    </tr>
+                    <tr>
+                        <td class="service-info">Obrona w sądzie (przestępstwo ciężkie)<small>Mecenas broni oskarżonego w sprawach o najwyższym stopniu.</small></td>
+                        <td class="service-cost">$120,000</td>
+                    </tr>
+                    <tr>
+                        <td class="service-info">Wniosek o apelację<small>Przygotowanie wniosku oraz udział w rozprawie dotyczącej apelacji.</small></td>
+                        <td class="service-cost">$40,000</td>
+                    </tr>
+                    <tr>
+                        <td class="service-info">Wniosek o kaucję / przedterminowe zwolnienie<small>Działania prawne w celu skrócenia wyroku lub wyjścia za kaucją.</small></td>
+                        <td class="service-cost">$45,000</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- 3. SPRAWY CYWILNE, NOTARIAT I DODATKI -->
+            <div class="pricing-box pricing-full">
+                <h3>3. Sprawy Cywilne, Usługi Notarialne & Dodatki</h3>
+                <table class="pricing-table">
+                    <tr>
+                        <td class="service-info">Złożenie pozwu cywilnego<small>Pomoc prawna w stworzeniu i skierowaniu pozwu do odpowiedniego sądu.</small></td>
+                        <td class="service-cost">$70,000</td>
+                        <td class="service-info">Sporządzenie testamentu<small>Dokument o mocy prawnej zabezpieczający majątek.</small></td>
+                        <td class="service-cost">$40,000</td>
+                    </tr>
+                    <tr>
+                        <td class="service-info">Reprezentacja w sprawie cywilnej<small>Pełna pomoc przed sądem (cena zawiera już koszt złożenia pozwu).</small></td>
+                        <td class="service-cost">$150,000</td>
+                        <td class="service-info">Sporządzenie pełnomocnictwa<small>Upoważnienie do podejmowania decyzji w imieniu osoby lub firmy.</small></td>
+                        <td class="service-cost">$42,000</td>
+                    </tr>
+                    <tr>
+                        <td class="service-info">Umowy cywilnoprawne i kontrakty<small>Tworzenie umów kupna/sprzedaży majątku, pożyczek i najmu.</small></td>
+                        <td class="service-cost">$30,000</td>
+                        <td class="service-info">Wniosek o Adopcję<small>Sporządzenie oficjalnego wniosku o adopcję do sądu.</small></td>
+                        <td class="service-cost">$50,000</td>
+                    </tr>
+                    <tr>
+                        <td class="service-info">Notarialne formalności / Przepisanie pojazdu<small>Intercyzy przedmałżeńskie lub zabezpieczenie transakcji zbycia aut.</small></td>
+                        <td class="service-cost">$50,000</td>
+                        <td class="service-info">Przygotowanie dokumentacji dowodowej<small>Zabezpieczenie i przygotowanie dowodów do przewodu sądowego.</small></td>
+                        <td class="service-cost">$40,000</td>
+                    </tr>
+                    <tr>
+                        <td class="service-info">Porada prawna<small>Konsultacja wstępna (do 30 min). Możliwość zaliczenia na poczet dalszych usług.</small></td>
+                        <td class="service-cost">$15,000</td>
+                        <td class="service-info">Stała współpraca prawna (Abonament)<small>Tygodniowy, kompleksowy konsjersz i natychmiastowy przyjazd na zatrzymania.</small></td>
+                        <td class="service-cost">$200,000</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="index.html#contact" class="btn">Masz sprawę? Skontaktuj się ze mną</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Law Office of Mike Ritter. All Rights Reserved.</p>
+        <p style="font-size: 0.75rem; margin-top: 5px; color: #475569;">Project for Roleplay Purposes only.</p>
+    </footer>
+
+</body>
+</html>
