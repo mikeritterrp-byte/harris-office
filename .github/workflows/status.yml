@@ -1,0 +1,27 @@
+name: Zmiana Statusu Kancelarii
+on:
+  repository_dispatch:
+    types: [set_online, set_offline]
+
+jobs:
+  update-status:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pobierz pliki
+        uses: actions/checkout@v3
+
+      - name: Zmien status na online
+        if: github.event.action == 'set_online'
+        run: echo "online" > status.txt
+
+      - name: Zmien status na offline
+        if: github.event.action == 'set_offline'
+        run: echo "offline" > status.txt
+
+      - name: Zapisz zmiany na serwerze
+        run: |
+          git config --global user.name "Ritter Bot"
+          git config --global user.email "bot@ritter.office"
+          git add status.txt
+          git commit -m "Automatyczna zmiana statusu przez Discord" || exit 0
+          git push
