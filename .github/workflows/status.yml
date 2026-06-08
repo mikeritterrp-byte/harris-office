@@ -1,27 +1,26 @@
-name: Zmiana Statusu Kancelarii
+name: Update Status
+
 on:
   repository_dispatch:
-    types: [set_online, set_offline]
+    types: [status_update]
 
 jobs:
-  update-status:
+  update-file:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - name: Pobierz pliki
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Zmien status na online
-        if: github.event.action == 'set_online'
-        run: echo "online" > status.txt
-
-      - name: Zmien status na offline
-        if: github.event.action == 'set_offline'
-        run: echo "offline" > status.txt
-
-      - name: Zapisz zmiany na serwerze
+      - name: Update status.txt
         run: |
-          git config --global user.name "Ritter Bot"
-          git config --global user.email "bot@ritter.office"
+          echo "${{ github.event.client_payload.status }}" > status.txt
+
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name "Status Bot"
+          git config --global user.email "status-bot@github.com"
           git add status.txt
-          git commit -m "Automatyczna zmiana statusu przez Discord" || exit 0
+          git commit -m "Status updated via Discord to ${{ github.event.client_payload.status }}" || exit 0
           git push
