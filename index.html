@@ -40,13 +40,14 @@
             line-height: 1.6;
         }
 
-        /* --- NAWIGACJA --- */
+       /* --- NAWIGACJA --- */
         nav {
             background-color: var(--bg-card);
             border-bottom: 1px solid var(--border);
-            padding: 15px 40px;
+            padding: 15px 20px;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column; /* Na telefonach układ pionowy */
+            gap: 15px;
             align-items: center;
             position: sticky;
             top: 0;
@@ -61,15 +62,15 @@
         }
 
         .nav-logo-img {
-            height: 40px;
-            width: 40px;
+            height: 35px;
+            width: 35px;
             object-fit: contain;
         }
 
         .nav-logo {
             font-family: 'Cinzel', serif;
             font-weight: 700;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #fff;
             letter-spacing: 2px;
         }
@@ -80,14 +81,16 @@
 
         .nav-links {
             display: flex;
+            flex-wrap: wrap; /* Pozwala linkom schodzić do nowej linii, jeśli ekran jest za wąski */
+            justify-content: center;
             list-style: none;
-            gap: 30px;
+            gap: 15px; /* Mniejszy odstęp na telefonach */
         }
 
         .nav-links a {
             color: var(--text-light);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 500;
             letter-spacing: 1px;
             transition: color 0.3s;
@@ -95,6 +98,28 @@
 
         .nav-links a:hover {
             color: var(--primary);
+        }
+
+        /* --- DOPASOWANIE NAWIGACJI DLA WIEKSZYCH EKRANOW (TABLET, PC) --- */
+        @media (min-width: 768px) {
+            nav {
+                flex-direction: row; /* Powrót do układu poziomego */
+                justify-content: space-between;
+                padding: 15px 40px;
+            }
+            .nav-logo-img {
+                height: 40px;
+                width: 40px;
+            }
+            .nav-logo {
+                font-size: 1.2rem;
+            }
+            .nav-links {
+                gap: 30px;
+            }
+            .nav-links a {
+                font-size: 0.9rem;
+            }
         }
 
         /* --- HERO SECTION --- */
